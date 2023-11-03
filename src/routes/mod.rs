@@ -6,10 +6,7 @@ use rocket_db_pools::Connection;
 use rocket_db_pools::mongodb::bson::oid::ObjectId;
 use rocket_db_pools::{mongodb::bson::doc, mongodb};
 use rocket_db_pools::mongodb::{Client, Collection, Database};
-use rocket_db_pools::Connection;
-use rocket_db_pools::{mongodb, mongodb::bson::doc};
 use serde::{Deserialize, Serialize};
-// use rocket_db_pools::mongodb::bson::oid::ObjectId;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct ResponseDocument {

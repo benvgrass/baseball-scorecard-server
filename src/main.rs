@@ -4,6 +4,7 @@ use rocket_db_pools::Database;
 
 pub mod db;
 pub mod routes;
+pub mod models;
 
 #[launch]
 fn rocket() -> _ {
