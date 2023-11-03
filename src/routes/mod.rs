@@ -6,7 +6,6 @@ use rocket_db_pools::mongodb::{Client, Collection, Database};
 use serde::{Serialize, Deserialize};
 use crate::db::MongoClient;
 use rocket::response::Debug;
-// use rocket_db_pools::mongodb::bson::oid::ObjectId;
 
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -20,7 +19,7 @@ pub struct Response {
 type Result<T, E = Debug<mongodb::error::Error>> = std::result::Result<T, E>;
 
 #[get("/")]
-pub async fn index(mut db: Connection<MongoClient>) -> Result<Json<Response>> {
+pub async fn index(db: Connection<MongoClient>) -> Result<Json<Response>> {
     let client: Client = db.into_inner();
     let database: Database = client.database("GameData");
     let coll: Collection<Response> = database.collection("Games");

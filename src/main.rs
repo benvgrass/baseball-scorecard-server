@@ -17,7 +17,6 @@ fn rocket() -> _ {
 mod tests {
     use rocket::local::blocking::Client;
     use rocket::http::Status;
-    use rocket::serde::json::Json;
     use super::rocket;
 
     #[test]
