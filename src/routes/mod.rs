@@ -8,6 +8,7 @@ use serde::{Serialize, Deserialize};
 use crate::db::MongoClient;
 use rocket::response::Debug;
 
+pub mod game;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct ResponseDocument {
