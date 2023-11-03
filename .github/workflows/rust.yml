@@ -15,13 +15,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - uses: actions/checkout@v3
+
     - name: Load secrets from 1Password
       id: op-load
       uses: 1Password/load-secrets-action@v1.3.1
+      with:
+        export-env: true
       env: 
         OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
         ROCKET_DATABASES: op://bbscorecard/db-user/envvar
-    - uses: actions/checkout@v3
+    - name: print db
+      run: echo "rocketurl $ROCKET_DATABASES"
     - name: Build
       run: cargo build --verbose
     - name: Run tests
