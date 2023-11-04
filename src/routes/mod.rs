@@ -3,8 +3,8 @@ use rocket::futures::TryFutureExt;
 use rocket::response::Debug;
 use rocket::serde::json::Json;
 use rocket_db_pools::Connection;
-use rocket_db_pools::mongodb::bson::oid::ObjectId;
-use rocket_db_pools::{mongodb::bson::doc, mongodb};
+use bson::{doc, oid::ObjectId};
+use rocket_db_pools::mongodb;
 use rocket_db_pools::mongodb::{Client, Collection, Database};
 use serde::{Deserialize, Serialize};
 
