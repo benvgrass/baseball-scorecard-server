@@ -11,3 +11,8 @@ pub struct Game {
     
     pub location: String
 }
+
+#[derive(Debug, Deserialize, Serialize, Clone)]
+pub struct InsertGameResponse {
+    pub game_id: String
+}

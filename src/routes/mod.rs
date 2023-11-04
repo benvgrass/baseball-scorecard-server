@@ -1,12 +1,9 @@
-use rocket::futures::TryFutureExt;
-use rocket::serde::json::Json;
+use rocket::{serde::json::Json, futures::TryFutureExt};
 use rocket_db_pools::Connection;
 use bson::{doc, oid::ObjectId};
-use rocket_db_pools::mongodb;
 use rocket_db_pools::mongodb::{Client, Collection, Database};
 use serde::{Serialize, Deserialize};
-use crate::db::MongoClient;
-use rocket::response::Debug;
+use crate::db::{MongoClient, Result};
 
 pub mod game;
 
@@ -17,7 +14,6 @@ pub struct ResponseDocument {
     pub short_name: String,
 }
 
-type Result<T, E = Debug<mongodb::error::Error>> = std::result::Result<T, E>;
 
 #[get("/")]
 pub async fn index(db: Connection<MongoClient>) -> Result<Json<ResponseDocument>> {
