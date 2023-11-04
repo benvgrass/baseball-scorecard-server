@@ -4,7 +4,6 @@ use rocket::response::Debug;
 use rocket::serde::json::Json;
 use rocket_db_pools::Connection;
 use bson::{doc, oid::ObjectId};
-use rocket_db_pools::mongodb;
 use rocket_db_pools::mongodb::{Client, Collection, Database};
 use serde::{Deserialize, Serialize};
 
@@ -15,7 +14,6 @@ pub struct ResponseDocument {
     pub short_name: String,
 }
 
-type Result<T, E = Debug<mongodb::error::Error>> = std::result::Result<T, E>;
 
 #[get("/")]
 pub async fn index(db: Connection<MongoClient>) -> Result<Json<ResponseDocument>> {
