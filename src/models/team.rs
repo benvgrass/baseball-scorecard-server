@@ -11,5 +11,5 @@ pub struct Team {
 #[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct Lineup {
     pub batters: [Player; 9],
-    pub pitcher: Player,
+    pub pitcher: String,
 }
