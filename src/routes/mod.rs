@@ -1,13 +1,12 @@
-use rocket::futures::TryFutureExt;
-use rocket::serde::json::Json;
-use rocket_db_pools::Connection;
-use rocket_db_pools::{mongodb::bson::doc, mongodb};
-use rocket_db_pools::mongodb::{Client, Collection, Database};
-use serde::{Serialize, Deserialize};
 use crate::db::MongoClient;
+use rocket::futures::TryFutureExt;
 use rocket::response::Debug;
+use rocket::serde::json::Json;
+use rocket_db_pools::mongodb::{Client, Collection, Database};
+use rocket_db_pools::Connection;
+use rocket_db_pools::{mongodb, mongodb::bson::doc};
+use serde::{Deserialize, Serialize};
 // use rocket_db_pools::mongodb::bson::oid::ObjectId;
-
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Response {
@@ -24,9 +23,10 @@ pub async fn index(mut db: Connection<MongoClient>) -> Result<Json<Response>> {
     let client: Client = db.into_inner();
     let database: Database = client.database("GameData");
     let coll: Collection<Response> = database.collection("Games");
-    let result = coll.find_one(doc! {"short_name": "hello"}, None)
-        .map_ok( |r|
-            Json( r.unwrap())).await?;
+    let result = coll
+        .find_one(doc! {"short_name": "hello"}, None)
+        .map_ok(|r| Json(r.unwrap()))
+        .await?;
 
     println!("{:?}", result);
     Ok(result)
