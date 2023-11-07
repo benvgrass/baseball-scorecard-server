@@ -1,17 +1,12 @@
 use crate::db::MongoClient;
 use bson::{doc, oid::ObjectId};
 use rocket::futures::TryFutureExt;
-use rocket::response::Debug;
 use rocket::serde::json::Json;
 use rocket_db_pools::mongodb::{Client, Collection, Database};
 use rocket_db_pools::Connection;
 use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
-pub struct ResponseDocument {
-    pub _id: ObjectId,
-    pub name: String,
-    pub short_name: String,
 pub struct ResponseDocument {
     pub _id: ObjectId,
     pub name: String,
