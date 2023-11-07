@@ -1,9 +1,15 @@
 use crate::models::team::Team;
+use bson::oid::ObjectId;
 use serde::{Deserialize, Serialize};
 
 /// Represents a baseball game between two teams.
 #[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct Game {
+
+    /// The ID of the game.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub _id: Option<ObjectId>,
+
     /// The home team.
     pub home: Team,
     /// The away team.
