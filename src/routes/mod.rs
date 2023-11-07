@@ -12,6 +12,10 @@ pub struct ResponseDocument {
     pub _id: ObjectId,
     pub name: String,
     pub short_name: String,
+pub struct ResponseDocument {
+    pub _id: ObjectId,
+    pub name: String,
+    pub short_name: String,
 }
 
 #[get("/")]
