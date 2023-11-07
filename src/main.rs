@@ -8,9 +8,14 @@ pub mod routes;
 
 #[launch]
 fn rocket() -> _ {
-    rocket::build()
-        .attach(db::MongoClient::init())
-        .mount("/", routes![routes::index, routes::game::insert_game])
+    rocket::build().attach(db::MongoClient::init()).mount(
+        "/",
+        routes![
+            routes::index,
+            routes::game::insert_game,
+            routes::game::insert_game_test
+        ],
+    )
 }
 
 #[cfg(test)]
