@@ -6,6 +6,7 @@ use rocket_db_pools::{
 
 pub mod game;
 
+/// A type alias for `std::result::Result` with a default error type of `Debug<mongodb::error::Error>`.
 pub type Result<T, E = Debug<Error>> = std::result::Result<T, E>;
 
 #[derive(Database)]

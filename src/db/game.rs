@@ -4,6 +4,16 @@ use crate::models::game::{Game, InsertGameResponse};
 
 use super::{MongoClient, Result};
 
+/// Inserts a new game into MongoDB database.
+///
+/// # Arguments
+///
+/// * `db` - A `Connection` object representing the MongoDB client connection.
+/// * `game` - A `Game` object representing the game to be inserted.
+///
+/// # Returns
+///
+/// Returns a `Result` containing an `InsertGameResponse` object with the ID of the inserted game.
 pub async fn insert_game(db: Connection<MongoClient>, game: Game) -> Result<InsertGameResponse> {
     let client = db.into_inner();
     let database = client.database("GameData");

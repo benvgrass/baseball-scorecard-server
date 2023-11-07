@@ -6,6 +6,7 @@ pub mod db;
 pub mod models;
 pub mod routes;
 
+/// Launches the Rocket web framework with attached MongoDB client and mounted routes.
 #[launch]
 fn rocket() -> _ {
     rocket::build().attach(db::MongoClient::init()).mount(
