@@ -1,4 +1,6 @@
-use crate::db::MongoClient;
+pub mod game;
+
+use crate::db::{MongoClient, Result};
 use bson::{doc, oid::ObjectId};
 use rocket::futures::TryFutureExt;
 use rocket::serde::json::Json;
