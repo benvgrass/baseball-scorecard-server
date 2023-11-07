@@ -1,5 +1,8 @@
-use rocket_db_pools::{mongodb::{Client, error::Error}, Database};
 use rocket::response::Debug;
+use rocket_db_pools::{
+    mongodb::{error::Error, Client},
+    Database,
+};
 
 pub mod game;
 
