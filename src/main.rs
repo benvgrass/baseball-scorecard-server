@@ -18,10 +18,7 @@ mod tests {
     use super::rocket;
     use crate::routes::ResponseDocument;
     use rocket::http::Status;
-    use rocket::http::Status;
     use rocket::local::blocking::Client;
-
-    use super::rocket;
 
     #[test]
     fn test_index() {
