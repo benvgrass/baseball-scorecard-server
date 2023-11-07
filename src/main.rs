@@ -14,7 +14,8 @@ fn rocket() -> _ {
         routes![
             routes::index,
             routes::game::insert_game,
-            routes::game::insert_game_test
+            routes::game::insert_game_test,
+            routes::game::get_game
         ],
     )
 }
