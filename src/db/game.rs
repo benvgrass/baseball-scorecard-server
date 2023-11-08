@@ -29,6 +29,16 @@ pub async fn insert_game(db: Connection<MongoClient>, game: Game) -> Result<Inse
     })
 }
 
+/// Retrieves a game from the database by its ID.
+///
+/// # Arguments
+///
+/// * `db` - A `Connection` to the MongoDB database.
+/// * `game_id` - The ID of the game to retrieve.
+///
+/// # Returns
+///
+/// Returns a `Result` containing the retrieved `Game` if successful, or an error if the game could not be found.
 pub async fn get_game(db: Connection<MongoClient>, game_id: String) -> Result<Game> {
     let client = db.into_inner();
     let database = client.database("GameData");
