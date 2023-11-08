@@ -27,6 +27,18 @@ pub async fn insert_game(
     }
 }
 
+/// Retrieves a game from the database by its ID and returns it as JSON.
+/// 
+/// # Arguments
+/// 
+/// * `db` - A MongoDB connection.
+/// * `game_id` - The ID of the game to retrieve.
+/// 
+/// # Returns
+/// 
+/// A tuple containing a `Status` code and an optional JSON object representing the game data.
+/// If the game is found, returns a 200 OK status code with the game data.
+/// If the game is not found, returns a 404 Not Found status code.
 #[get("/game/<game_id>")]
 pub async fn get_game(db: Connection<MongoClient>, game_id: String) -> (Status, Option<Json<Game>>) {
     if let Ok(game) = game::get_game(db, game_id).await {
