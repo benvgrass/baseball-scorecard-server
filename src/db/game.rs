@@ -1,3 +1,4 @@
+use bson::{doc, oid::ObjectId};
 use rocket_db_pools::{mongodb::Collection, Connection};
 
 use crate::models::game::{Game, InsertGameResponse};
@@ -26,4 +27,24 @@ pub async fn insert_game(db: Connection<MongoClient>, game: Game) -> Result<Inse
             .unwrap()
             .to_string(),
     })
+}
+
+/// Retrieves a game from the database by its ID.
+///
+/// # Arguments
+///
+/// * `db` - A `Connection` to the MongoDB database.
+/// * `game_id` - The ID of the game to retrieve.
+///
+/// # Returns
+///
+/// Returns a `Result` containing the retrieved `Game` if successful, or an error if the game could not be found.
+pub async fn get_game(db: Connection<MongoClient>, game_id: String) -> Result<Game> {
+    let client = db.into_inner();
+    let database = client.database("GameData");
+    let collection: Collection<Game> = database.collection("Games");
+    let game = collection
+        .find_one(doc! {"_id": ObjectId::parse_str(game_id).unwrap()}, None)
+        .await?;
+    Ok(game.unwrap())
 }
